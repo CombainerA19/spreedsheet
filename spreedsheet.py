@@ -67,7 +67,7 @@ for i in range(from_to, row_length + 1):
                 is_hidden = "Okay"
                 if to_json[0]["data"]["children"][0]["data"]["selftext"] == "[deleted]":
                     is_hidden = "Deleted"
-
+                # Update the new row with data from reddit
                 domain = f"https://www.reddit.com/r/{subreddit_name}"
                 sheet.update_cell(i, 2, f'=HYPERLINK("{domain}";"{subreddit_name}")')
                 sheet.update_cell(i, 3, f"{subreddit_subscribers}")
@@ -81,7 +81,7 @@ for i in range(from_to, row_length + 1):
                 sheet.update_cell(i, 11, f"{user_name}")
                 sheet.update_cell(i, 12, "-------")
                 sheet.update_cell(i, 13, "-------")
-
+                # save the new row redis
                 key = "Post"f"{i}"
                 now = time.time()
                 post_time = to_json[0]["data"]["children"][0]["data"]["created_utc"]
